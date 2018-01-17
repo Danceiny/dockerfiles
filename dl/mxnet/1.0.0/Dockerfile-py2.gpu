@@ -1,0 +1,9 @@
+#FROM registry.cn-shanghai.aliyuncs.com/russellcloud/dl-base:1.0.0-gpu-py2
+FROM floydhub/dl-base:3.0.0-gpu-py2.18
+MAINTAINER Russell labs "contact@russellcloud.cn"
+
+RUN git clone --recursive https://github.com/apache/incubator-mxnet.git mxnet --branch 1.0.0 && cd mxnet && \
+    make -j$(nproc) USE_OPENCV=1 USE_BLAS=openblas USE_CUDA=1 USE_CUDA_PATH=/usr/local/cuda USE_CUDNN=1 && \
+    cd python && pip install -e .
+
+ENV PYTHONPATH /mxnet/python
