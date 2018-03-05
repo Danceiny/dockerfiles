@@ -1,0 +1,50 @@
+FROM floydhub/dl-base:3.0.0-gpu-py2.18
+MAINTAINER Russell labs "contact@russellcloud.cn"
+
+ARG CAFFE_VERSION=2.0
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      build-essential \
+      cmake \
+      git \
+      libgoogle-glog-dev \
+      libgtest-dev \
+      libiomp-dev \
+      libleveldb-dev \
+      liblmdb-dev \
+      libopencv-dev \
+      libopenmpi-dev \
+      libsnappy-dev \
+      libprotobuf-dev \
+      openmpi-bin \
+      openmpi-doc \
+      protobuf-compiler \
+      python-dev \
+      python-pip
+
+RUN pip install \
+      future \
+      numpy \
+      protobuf
+
+# for Ubuntu 14.04
+# sudo apt-get install -y --no-install-recommends libgflags2
+# for Ubuntu 16.04
+RUN apt-get install -y --no-install-recommends libgflags-dev
+
+
+### Clone & Build ###
+# This will build Caffe2 in an isolated directory so that Caffe2 source is
+# unaffected
+
+# This configures the build and finds which libraries it will include in the
+# Caffe2 installation. The output of this command is very helpful in debugging
+
+# This actually builds and installs Caffe2 from makefiles generated from the
+# above configuration step
+RUN git clone --recursive https://github.com/caffe2/caffe2.git \
+    && cd caffe2 \
+    && mkdir build && cd build  \
+    && cmake .. \
+    && make install
+

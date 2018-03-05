@@ -1,6 +1,0 @@
-FROM floydhub/dl-base:3.0.0-gpu-py2.18
-MAINTAINER Russell labs "contact@russellcloud.cn"
-RUN git clone https://github.com/paddlepaddle/paddle \
-    && cd paddle && mkdir build && cd build && cmake -DWITH_GPU=ON -DWITH_TESTING=OFF -DWITH_MKL=OFF -DWITH_DOC=ON -DCUDA_ARCH_NAME=Auto && make
-    
-RUN pip install build/python/dist/*.whl
