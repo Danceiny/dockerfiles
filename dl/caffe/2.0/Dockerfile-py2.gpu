@@ -35,7 +35,7 @@ RUN apt-get install -y --no-install-recommends libgflags-dev
 # upgrade eigen to v3.3.0+
 RUN wget -O eigen.3.3.4.tar.gz http://bitbucket.org/eigen/eigen/get/3.3.4.tar.gz \
     && tar xzvf eigen.3.3.4.tar.gz \
-    && rm -rf /usr/include/eigen3/  \
+    && rm -rf /usr/include/eigen3/ eigen.3.3.4.tar.gz \
     && mv `ls|grep eigen-eigen` eigen3  \
     && mv eigen3 /usr/include/
 
