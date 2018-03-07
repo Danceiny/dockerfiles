@@ -53,6 +53,9 @@ RUN git clone --recursive https://github.com/caffe2/caffe2.git \
     && cd caffe2 \
     && mkdir build && cd build  \
     && cmake .. \
+    -DUSE_CUDA=OFF \
+    -DUSE_NNPACK=OFF \
+    -DUSE_ROCKSDB=OFF \
     && make -j"$(nproc)" install  \
     && ldconfig \
     && make clean \
