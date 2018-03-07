@@ -48,9 +48,21 @@ RUN wget -O eigen.3.3.4.tar.gz http://bitbucket.org/eigen/eigen/get/3.3.4.tar.gz
 
 # This actually builds and installs Caffe2 from makefiles generated from the
 # above configuration step
+
+
 RUN git clone --recursive https://github.com/caffe2/caffe2.git \
     && cd caffe2 \
     && mkdir build && cd build  \
     && cmake .. \
-    && make install
+    -DCUDA_ARCH_NAME=Manual \
+    -DCUDA_ARCH_BIN="35 52 60 61" \
+    -DCUDA_ARCH_PTX="61" \
+    -DUSE_NNPACK=OFF \
+    -DUSE_ROCKSDB=OFF \
+    && make -j"$(nproc)" install  \
+    && ldconfig \
+    && make clean \
+    && cd .. \
+    && rm -rf build
 
+ENV PYTHONPATH /usr/local
