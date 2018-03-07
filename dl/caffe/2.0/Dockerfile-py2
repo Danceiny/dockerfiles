@@ -1,5 +1,5 @@
 FROM floydhub/dl-base:3.0.0-py2.18
-MAINTAINER Floyd Labs "support@floydhub.com"
+MAINTAINER Russell labs "contact@russellcloud.cn"
 # doc: https://caffe2.ai/docs/getting-started.html?platform=ubuntu&configuration=compile
 ARG CAFFE_VERSION=2.0
 
