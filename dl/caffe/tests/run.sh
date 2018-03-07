@@ -7,7 +7,7 @@ cd ~ && python -c 'from caffe2.python import core' 2>/dev/null && echo "Success"
 
 
 # GPU test
-cd ~ && python caffe2/python/operator_test/relu_op_test.py
+cd ~/caff2 && python caffe2/python/operator_test/relu_op_test.py
 
 # ERROR LOGS
 #1019/caffe2/caffe2/operators/conv_op_eigen.cc:24:2: error: #error "Caffe2 requires Eigen to be at least 3.3.0.";

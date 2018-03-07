@@ -72,6 +72,11 @@ RUN wget -O eigen.3.3.4.tar.gz http://bitbucket.org/eigen/eigen/get/3.3.4.tar.gz
 # above configuration step
 
 
+RUN wget "http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_8.0.61-1_amd64
+.deb"
+RUN dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb \
+    && apt-get update && apt-get install cuda
+
 RUN git clone --recursive https://github.com/caffe2/caffe2.git
 RUN cd caffe2 \
     && mkdir build && cd build  \
