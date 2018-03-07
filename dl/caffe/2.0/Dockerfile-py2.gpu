@@ -50,8 +50,8 @@ RUN wget -O eigen.3.3.4.tar.gz http://bitbucket.org/eigen/eigen/get/3.3.4.tar.gz
 # above configuration step
 
 
-RUN git clone --recursive https://github.com/caffe2/caffe2.git \
-    && cd caffe2 \
+RUN git clone --recursive https://github.com/caffe2/caffe2.git
+RUN cd caffe2 \
     && mkdir build && cd build  \
     && cmake .. \
     -DCUDA_ARCH_NAME=Manual \
