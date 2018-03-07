@@ -4,33 +4,40 @@ MAINTAINER Floyd Labs "support@floydhub.com"
 ARG CAFFE_VERSION=2.0
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-      build-essential \
-      cmake \
-      git \
-      libgoogle-glog-dev \
-      libgtest-dev \
-      libiomp-dev \
-      libleveldb-dev \
-      liblmdb-dev \
-      libopencv-dev \
-      libopenmpi-dev \
-      libsnappy-dev \
-      libprotobuf-dev \
-      openmpi-bin \
-      openmpi-doc \
-      protobuf-compiler \
-      python-dev \
-      python-pip
+    libgflags-dev \
+    libgtest-dev \
+    libiomp-dev \
+    libleveldb-dev \
+    liblmdb-dev \
+    libopencv-dev \
+    libopenmpi-dev \
+    libsnappy-dev \
+    openmpi-bin \
+    openmpi-doc \
+    python-numpy \
+    python-pydot \
+    python-setuptools \
+    python-scipy \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN pip install \
-      future \
-      numpy \
-      protobuf
-
+RUN pip install --no-cache-dir \
+    flask \
+    graphviz \
+    jupyter \
+    matplotlib \
+    pydot \
+    python-nvd3 \
+    pyyaml \
+    requests \
+    scikit-image \
+    scipy \
+    setuptools \
+    tornado
 # for Ubuntu 14.04
 # sudo apt-get install -y --no-install-recommends libgflags2
 # for Ubuntu 16.04
-RUN apt-get install -y --no-install-recommends libgflags-dev
+#RUN apt-get install -y --no-install-recommends libgflags-dev
 
 # upgrade eigen to v3.3.0+
 RUN wget -O eigen.3.3.4.tar.gz http://bitbucket.org/eigen/eigen/get/3.3.4.tar.gz \
