@@ -72,14 +72,14 @@ RUN wget -O eigen.3.3.4.tar.gz http://bitbucket.org/eigen/eigen/get/3.3.4.tar.gz
 # above configuration step
 
 
-RUN wget "http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb"
-RUN dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb \
-    && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y cuda
+#RUN wget "http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb"
+#RUN dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb \
+#    && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y cuda
 
-ARG CUDNN_URL="http://developer.download.nvidia.com/compute/redist/cudnn/v5.1/cudnn-8.0-linux-x64-v5.1.tgz"
-RUN wget ${CUDNN_URL}
-RUN tar -xzf cudnn-8.0-linux-x64-v5.1.tgz -C /usr/local \
-    && rm cudnn-8.0-linux-x64-v5.1.tgz && ldconfig
+#ARG CUDNN_URL="http://developer.download.nvidia.com/compute/redist/cudnn/v5.1/cudnn-8.0-linux-x64-v5.1.tgz"
+#RUN wget ${CUDNN_URL}
+#RUN tar -xzf cudnn-8.0-linux-x64-v5.1.tgz -C /usr/local \
+#    && rm cudnn-8.0-linux-x64-v5.1.tgz && ldconfig
 
 RUN git clone --recursive https://github.com/caffe2/caffe2.git
 RUN cd caffe2 \
