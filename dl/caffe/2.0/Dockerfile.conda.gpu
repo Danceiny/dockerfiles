@@ -1,0 +1,11 @@
+FROM floydhub/dl-base:3.0.0-gpu-py2.18
+MAINTAINER Russell labs "contact@russellcloud.cn"
+
+ARG CAFFE_VERSION=2.0
+
+# Install Anaconda
+RUN wget https://repo.continuum.io/archive/Anaconda2-5.1.0-Linux-x86_64.sh \
+    && bash Anaconda2-5.1.0-Linux-x86_64.sh -b \
+    && rm Anaconda2-5.1.0-Linux-x86_64.sh
+ENV PATH /root/anaconda2/bin/:$PATH
+RUN conda install -c caffe2 caffe2-cuda9.0-cudnn7
