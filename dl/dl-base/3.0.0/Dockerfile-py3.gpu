@@ -1,5 +1,13 @@
-FROM floydhub/dl-opencv:3.3.1.1-gpu-py3
+FROM floydhub/dl-opencv:3.4.0-gpu-py3
 MAINTAINER Floyd Labs "support@floydhub.com"
+
+# Add Tensorboard
+RUN apt-get update && apt-get install -y supervisor \
+  && apt-get clean \
+  && apt-get autoremove \
+  && rm -rf /var/cache/apt/archives/* \
+  && rm -rf /var/lib/apt/lists/*
+COPY tensorboard/tensorboard.conf /etc/supervisor/conf.d/
 
 # graphviz for visualization
 RUN apt-get update && apt-get install -y \
@@ -13,15 +21,16 @@ RUN apt-get update && apt-get install -y \
 RUN pip --no-cache-dir install \
         pydot \
         dlib \
-        gym[all] \
         incremental \
         nltk \
+        gym[atari,box2d,classic_control] \
         textacy \
         scikit-image \
         spacy \
         tqdm \
         wheel \
         kaggle-cli \
+        annoy \
     && rm -rf /tmp/* /var/tmp/*
 
 
