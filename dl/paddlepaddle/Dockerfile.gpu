@@ -1,19 +1,5 @@
 FROM floydhub/dl-base:3.0.0-gpu-py2.18
 MAINTAINER Russell labs "contact@russellcloud.cn"
-# paddle:v2-gpu-py2.75
-# RUN pip install paddlepaddle-gpu
-
-RUN pip install --upgrade pip && pip install -U jupyter jupyterlab && jupyter serverextension enable --py jupyterlab --sys-prefix
-
-ENV LGOPATH /lgo
-RUN mkdir -p $LGOPATH
-
-# Fetch lgo repository
-RUN go get github.com/yunabe/lgo/cmd/lgo && go get -d github.com/yunabe/lgo/cmd/lgo-internal
-
-# Install packages used from example notebooks.
-RUN go get -u github.com/nfnt/resize gonum.org/v1/gonum/... gonum.org/v1/plot/... github.com/wcharczuk/go-chart
-
-# Install lgo
-RUN lgo install && lgo installpkg github.com/nfnt/resize gonum.org/v1/gonum/... gonum.org/v1/plot/... github.com/wcharczuk/go-chart
-RUN $GOPATH/src/github.com/yunabe/lgo/bin/install_kernel
+ARG WhlFN=paddlepaddle_gpu-0.11.1a2-cp27-cp27mu-linux_x86_64.whl
+COPY $WhlFN /
+RUN pip --default-timeout=1000 install $WhlFN && rm -y $WhlFN
