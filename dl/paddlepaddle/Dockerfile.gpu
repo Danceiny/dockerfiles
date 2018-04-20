@@ -1,5 +1,9 @@
 FROM floydhub/dl-base:3.0.0-gpu-py2.18
 MAINTAINER Russell labs "contact@russellcloud.cn"
 ARG WhlFN=paddlepaddle_gpu-0.11.1a2-cp27-cp27mu-linux_x86_64.whl
+# docker run -it -v $PWD:/paddle -e "WITH_GPU=ON" -e "WITH_TESTING=OFF" -e "PYTHON_ABI=cp27-cp27mu"  -e "WITH_MKL=OFF" -e "WITH_C_API=ON" paddlepaddle/paddle_manylinux_devel:cuda9.0_cudnn7 bash -x /paddle/paddle/scripts/docker/build.sh
+
 COPY $WhlFN /
 RUN pip --default-timeout=1000 install $WhlFN && rm $WhlFN
+# numpy must > 0xc, but now 0xa, need upgrade
+RUN pip install numpy --upgrade
