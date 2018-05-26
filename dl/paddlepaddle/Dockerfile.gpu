@@ -1,6 +1,7 @@
 FROM floydhub/dl-base:3.0.0-gpu-py2.18
 MAINTAINER Russell labs "contact@russellcloud.cn"
 ARG WhlFN=paddlepaddle_gpu-0.11.1a2-cp27-cp27mu-linux_x86_64.whl
+# git clone -b release/0.11.0 https://github.com/PaddlePaddle/Paddle.git
 # docker run -it -v $PWD:/paddle -e "WITH_GPU=ON" -e "WITH_TESTING=OFF" -e "PYTHON_ABI=cp27-cp27mu"  -e "WITH_MKL=OFF" -e "WITH_C_API=ON" paddlepaddle/paddle_manylinux_devel:cuda9.0_cudnn7 bash -x /paddle/paddle/scripts/docker/build.sh
 
 COPY $WhlFN /
