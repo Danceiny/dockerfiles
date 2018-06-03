@@ -1,0 +1,5 @@
+FROM floydhub/dl-base:3.0.0-gpu-py2.22
+MAINTAINER RussellCloud Labs "contact@russellcloud.cn"
+
+RUN pip --no-cache-dir install --upgrade http://download.pytorch.org/whl/cu90/torch-0.4.0-cp27-cp27mu-linux_x86_64.whl \ 
+	torchvision 
